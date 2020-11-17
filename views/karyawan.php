@@ -17,12 +17,6 @@
         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                    <th class="center">
-                        <label class="pos-rel">
-                            <input type="checkbox" class="ace" />
-                            <span class="lbl"></span>
-                        </label>
-                    </th>
                     <th>Nip </th>
                     <th>Nama</th>
                     <th class="hidden-480">Email</th>
@@ -34,12 +28,6 @@
             <tbody>
                 <?php foreach ($record as $data) { ?>
                     <tr>
-                        <td class="center">
-                            <label class="pos-rel">
-                                <input type="checkbox" class="ace" value="<?= $data->ID; ?>" />
-                                <span class="lbl"></span>
-                            </label>
-                        </td>
                         <td><?= $data->nip; ?></td>
                         <td class="hidden-480"><?= $data->name; ?></td>
                         <td><?= $data->email; ?></td>
