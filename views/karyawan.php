@@ -22,6 +22,12 @@
         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
+                    <th class="center">
+                        <label class="pos-rel">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span>
+                        </label>
+                    </th>
                     <th>Nip </th>
                     <th>Nama</th>
                     <th class="hidden-480">Email</th>
@@ -31,11 +37,16 @@
             </thead>
 
             <tbody>
-
                 <tr>
-                    <td><?= $data->nip; ?></td>
-                    <td class="hidden-480"><?= $data->name; ?></td>
-                    <td><?= $data->email; ?></td>
+                    <td class="center">
+                        <label class="pos-rel">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span>
+                        </label>
+                    </td>
+                    <td>$45</td>
+                    <td class="hidden-480">3,330</td>
+                    <td>Feb 12</td>
                     <td>
                         <div class="hidden-sm hidden-xs action-buttons">
                             <a class="blue" href="#">
@@ -97,13 +108,16 @@
                         <h4 class="blue bigger">Tambah Data</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="" id="form-karyawan" method="post" enctype="multipart/form-data">
+                        <form action="<?= site_url('karyawan/action/tambah'); ?>" id="form-karyawan" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-5">
                                     <div class="space"></div>
 
                                     <div class="form-group">
                                         <input type="file" name="image" id="image" class="dropify">
+                                        <?php if ($this->session->flashdata('error')) : ?>
+                                            <div class="alert alert-danger"><?= $this->session->flashdata('error');; ?></div>
+                                        <?php endif; ?>
                                     </div>
 
                                 </div>
