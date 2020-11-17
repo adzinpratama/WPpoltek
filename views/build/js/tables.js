@@ -3,43 +3,7 @@ jQuery(function($) {
     var path = window.location.pathname;
     var host = window.location.hostname;
     var myTable = 
-    $('#dynamic-table')
-    //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-    .DataTable( {
-        bAutoWidth: false,
-        "aoColumns": [
-          { "bSortable": false },
-          null, null,null,
-          { "bSortable": false }
-        ],
-        "aaSorting": [],
-        // "bProcessing": true,
-        // "bServerSide": true,
-        "sAjaxSource": "http://" + host + path + "/action/ambil"	,
-        // "columnDefs": [
-        //     { 
-        //         "targets": [ 0 ], 
-        //         "orderable": false, 
-        //     }
-        //     ],
-
-        //,
-        //"sScrollY": "200px",
-        //"bPaginate": false,
-
-        //"sScrollX": "100%",
-        //"sScrollXInner": "120%",
-        //"bScrollCollapse": true,
-        //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-        //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-        //"iDisplayLength": 50
-
-
-        select: {
-            style: 'multi'
-        }
-    } );
+    $('#dynamic-table').DataTable();
 
     
     
