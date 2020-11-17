@@ -85,15 +85,19 @@ class User extends Backend_Controller
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = '2048';
                 $config['upload_path'] = './upload/avatars/';
-                $config['encrypt_name'] = TRUE;
+                // $config['encrypt_name'] = TRUE;
 
                 $this->load->library('upload', $config);
 
                 if (!$this->upload->do_upload('image')) {
-                    echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png dan max size 2mb";
-                    die();
+                    // echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png dan max size 2mb";
+                    // die();
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->session->set_flashdata('error', $error);
                 } else {
                     $data['photo'] = $this->upload->data('file_name');
+                    // print_r($this->upload->data());
+                    // die();
                 }
             }
             $data = [

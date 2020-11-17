@@ -73,38 +73,38 @@ $(document).on('click','#hapus',function(eve){
 
 });
 
-$(document).on('click','#submit-karyawan',function(eve){
+// $(document).on('click','#submit-karyawan',function(eve){
     
-    eve.preventDefault();
-    var action = $('#form-karyawan').attr('action');
-    // var datatosend = $('#form-karyawan').serialize();
-    // const fileupload = $('#image').prop('files')[0];
-    // let formData = new FormData();
-    // formData.append('fileupload', fileupload);
-    // formData.append('form', datatosend);
-    var form = $('#form-karyawan')[0];
+//     eve.preventDefault();
+//     var action = $('#form-karyawan').attr('action');
+//     // var datatosend = $('#form-karyawan').serialize();
+//     // const fileupload = $('#image').prop('files')[0];
+//     // let formData = new FormData();
+//     // formData.append('fileupload', fileupload);
+//     // formData.append('form', datatosend);
+//     var form = $('#form-karyawan')[0];
 
-    var data = new FormData(form);
-    // console.log(data);
+//     var data = new FormData(form);
+//     // console.log(data);
         
-    $.ajax('http://' + host + path + '/action/tambah',{
-        dataType:'json',
-        type:'POST',
-        enctype: 'multipart/form-data',
-        processData: false,  // Important!
-        contentType: false,
-        cache: false,
-        async:false,
-        data:data,
-        success:function(data){
-            console.log(data);
-            alert('ok');
-        },
-        error:function(e){
-            console.log(e);
-        }
-    });
-});
+//     $.ajax('http://' + host + path + '/action/tambah',{
+//         dataType:'json',
+//         type:'POST',
+//         enctype: 'multipart/form-data',
+//         processData: false,  // Important!
+//         contentType: false,
+//         cache: false,
+//         async:false,
+//         data:data,
+//         success:function(data){
+//             console.log(data);
+//             alert('ok');
+//         },
+//         error:function(e){
+//             console.log(e);
+//         }
+//     });
+// });
 
 
 

@@ -108,13 +108,16 @@
                         <h4 class="blue bigger">Tambah Data</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="" id="form-karyawan" method="post" enctype="multipart/form-data">
+                        <form action="<?= site_url('karyawan/action/tambah'); ?>" id="form-karyawan" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-5">
                                     <div class="space"></div>
 
                                     <div class="form-group">
                                         <input type="file" name="image" id="image" class="dropify">
+                                        <?php if ($this->session->flashdata('error')) : ?>
+                                            <div class="alert alert-danger"><?= $this->session->flashdata('error');; ?></div>
+                                        <?php endif; ?>
                                     </div>
 
                                 </div>
