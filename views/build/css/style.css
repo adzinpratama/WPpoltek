@@ -19,6 +19,11 @@
 	z-index: 999;
 }
 
+.delete {
+	transform: translateY(-19vh);
+	background-color: red;
+}
+
 .act-btn:hover {
 	background: aqua;
 	text-decoration: none;

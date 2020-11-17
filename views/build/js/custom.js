@@ -32,7 +32,7 @@ $(function() {
 $(window).trigger('hashchange');
 $(window).trigger('dropify');
 
-$('#modal-edit').on('hidden.bs.modal', function (e) {
+$('#modal-form').on('hidden.bs.modal', function (e) {
 
     window.history.pushState(null, null, path); // hapus hash 
     $('#modal-form form').find("input").val("");
@@ -68,6 +68,40 @@ $(document).on('click','#hapus',function(eve){
             }
         });
         
+        }
+    });
+
+});
+
+$(document).on('click','#submit-karyawan',function(eve){
+    
+    eve.preventDefault();
+    var action = $('#form-karyawan').attr('action');
+    // var datatosend = $('#form-karyawan').serialize();
+    // const fileupload = $('#image').prop('files')[0];
+    // let formData = new FormData();
+    // formData.append('fileupload', fileupload);
+    // formData.append('form', datatosend);
+    var form = $('#form-karyawan')[0];
+
+    var data = new FormData(form);
+    // console.log(data);
+        
+    $.ajax('http://' + host + path + '/action/tambah',{
+        dataType:'json',
+        type:'POST',
+        enctype: 'multipart/form-data',
+        processData: false,  // Important!
+        contentType: false,
+        cache: false,
+        async:false,
+        data:data,
+        success:function(data){
+            console.log(data);
+            alert('ok');
+        },
+        error:function(e){
+            console.log(e);
         }
     });
 });
@@ -148,20 +182,6 @@ $(document).on('click','#hapus',function(eve){
     
 // }
 
-function ambil_karyawan(){
-
-    $.ajax('http://' + host + path + '/action/ambil',{
-        dataType: 'JSON',
-        type :'POST',
-        success: function(data){
-            
-            
-        },
-        error : function(e){
-            console.log(e);
-        }
-    });
-}
 function getJSON(url,data){
     return JSON.parse($.ajax({
         type: 'POST',

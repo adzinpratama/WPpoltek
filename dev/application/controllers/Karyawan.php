@@ -108,6 +108,37 @@ class Karyawan extends Backend_Controller
                 //output dalam format JSON
                 echo json_encode($output);
             }
+            if ($param == 'tambah') {
+                $post = $this->input->post(null, true);
+                $upload_image = $_FILES['image']['name'];
+
+                if ($upload_image) {
+                    $config['allowed_types'] = 'gif|jpg|png';
+                    $config['max_size'] = '2048';
+                    $config['upload_path'] = './upload/avatars/';
+                    $config['encrypt_name'] = TRUE;
+
+                    $this->load->library('upload', $config);
+
+                    if (!$this->upload->do_upload('image')) {
+                        echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png dan max size 2mb";
+                        die();
+                    } else {
+                        $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+                        $image = $data['upload_data']['file_name'];
+                        $data['photo'] = $this->upload->data('file_name');
+                    }
+                }
+                $data = [
+                    'nip' => $post['nip'],
+                    'name' => $post['full_name'],
+                    'email' => $post['email'],
+                    'phone' => $post['phone'],
+                    'active' => 1,
+                ];
+                // $this->Karyawan_model->insert($data);
+                echo json_encode(['response' => 'success', 'data' => $data]);
+            }
         }
     }
 
