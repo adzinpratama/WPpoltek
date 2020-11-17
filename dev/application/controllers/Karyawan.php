@@ -30,7 +30,7 @@ class Karyawan extends Backend_Controller
     {
         $data['page'] = "karyawan";
         $data['script'] = "tables";
-        // $data['record'] = $this->db->Karyawan_model->getAll();
+        $data['record'] = $this->Karyawan_model->getAll();
         $this->site->view($data);
     }
 
@@ -38,75 +38,6 @@ class Karyawan extends Backend_Controller
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             if ($param == 'ambil') {
-                $list = $this->Karyawan_model->getAll();
-                $data = array();
-                foreach ($list as $field) {
-                    $row = array();
-                    $row[] = '<label class="pos-rel">
-                    <input type="checkbox" class="ace" />
-                    <span class="lbl"></span>
-                </label>';
-                    $row[] = $field['nip'];
-                    $row[] = $field['name'];
-                    $row[] = $field['email'];
-                    $row[] = '<div class="hidden-sm hidden-xs action-buttons">
-                    <a class="blue" href="#">
-                        <i class="ace-icon fa fa-search-plus bigger-130"></i>
-                    </a>
-
-                    <a class="green" href="#">
-                        <i class="ace-icon fa fa-pencil bigger-130"></i>
-                    </a>
-
-                    <a class="red" href="#">
-                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                    </a>
-                </div>
-
-                <div class="hidden-md hidden-lg">
-                    <div class="inline pos-rel">
-                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-                        </button>
-
-                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                            <li>
-                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                    <span class="blue">
-                                        <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                    </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                    <span class="green">
-                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                    </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                    <span class="red">
-                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>';
-                    $data[] = $row;
-                }
-
-                $output = array(
-                    // "draw" => $_POST['draw'],
-                    // "recordsTotal" => $this->Karyawan_model->count_all(),
-                    // "recordsFiltered" => $this->Karyawan_model->count_filtered(),
-                    "data" => $data,
-                );
-                //output dalam format JSON
-                echo json_encode($output);
             }
         }
     }
