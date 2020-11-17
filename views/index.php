@@ -412,21 +412,17 @@
             </div><!-- /.sidebar-shortcuts -->
 
             <ul id="nav" class="nav nav-list">
-                <li class="">
-                    <a href="<?= site_url(); ?>">
-                        <i class="menu-icon fa fa-tachometer"></i>
-                        <span class="menu-text"> Dashboard </span>
-                    </a>
+                <?php foreach ($menu as $mn) : ?>
+                    <li class="">
+                        <a href="<?= site_url($mn['location']); ?>">
+                            <i class="menu-icon fa fa-<?= $mn['icon']; ?>"></i>
+                            <span class="menu-text"> <?= $mn['menu_title'] ?> </span>
+                        </a>
 
-                    <b class="arrow"></b>
-                </li>
+                        <b class="arrow"></b>
+                    </li>
+                <?php endforeach; ?>
 
-                <li class="">
-                    <a href="<?= site_url('user'); ?>">
-                        <i class="menu-icon fa fa-users"></i>
-                        <span class="menu-text"> Users </span>
-                    </a>
-                </li>
             </ul><!-- /.nav-list -->
 
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

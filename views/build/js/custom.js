@@ -10,32 +10,32 @@ $(function() {
             var post_ID = getUrlVars()['id'];
             var detail = getJSON('http://'+host+path+'/action/get', {id:post_ID});
             // alert(<?= $this->uri->segment(2); ?>);
-            $('#modal-form .modal-body #username').val(detail.data['username']);
-            $('#modal-form .modal-body #full_name').val(detail.data['full_name']);
-            $('#modal-form .modal-body #email').val(detail.data['email']);
-            $('#modal-form .modal-body #phone').val(detail.data['phone']);
+            $('#modal-edit .modal-body #file').append('<input type="file" name="image" id="image_edit" class="dropify">')
+            $('#modal-edit .modal-body #username').val(detail.data['username']);
+            $('#modal-edit .modal-body #full_name').val(detail.data['full_name']);
+            $('#modal-edit .modal-body #email').val(detail.data['email']);
+            $('#modal-edit .modal-body #phone').val(detail.data['phone']);
             $loc = "./upload/avatars/"+detail.data['photo'];
-            $('#modal-form .modal-body #image').attr("data-default-file",$loc);
-            getDropify()
+            $('#modal-edit .modal-body #image_edit').attr("data-default-file",$loc);
+            $('#image_edit').dropify();
             // $('.dropify-render > img').attr('src' ,imageUrll);
             // $('#modal-form .modal-body #image').dropify();
-            $('#modal-form').modal('show');
+            $('#modal-edit').modal('show');
             
         }
 
     });
+    getDropify('#image');
 
-    
+    // ambil_karyawan();
 });
 $(window).trigger('hashchange');
-$('.dropify').trigger('dropify');
+$(window).trigger('dropify');
 
-$('#modal-form').on('hidden.bs.modal', function (e) {
+$('#modal-edit').on('hidden.bs.modal', function (e) {
+
     window.history.pushState(null, null, path); // hapus hash 
-    e.preventDefault();
-    
     $('#modal-form form').find("input").val("");
-    $('#modal-form form').find("input[type=file]").attr("data-default-file","");
     $('#modal-form').hide();
 });
 
@@ -63,7 +63,7 @@ $(document).on('click','#hapus',function(eve){
                 'Deleted!',
                 'File Kamu Sudah Terhapus',
                 'success'
-                )
+                ).then((result)=>{location.reload()})
             }
             }
         });
@@ -72,6 +72,96 @@ $(document).on('click','#hapus',function(eve){
     });
 });
 
+
+
+// function asd() {
+//         $.ajax('http://' + host + path + '/action/ambil', {
+//         dataType: 'json',
+//         type: 'POST',
+//         success: function (data) {
+//             $.each(data.record,funtion(index,element){
+//                 $('table#dynamic-table').find('tbody').append(
+//                 '<tr>'+
+//                 '<td class="center">'+
+//                     '<label class="pos-rel">'+
+//                         '<input type="checkbox" class="ace" />'+
+//                         '<span class="lbl"></span>'+
+//                     '</label>'+
+//                 '</td>'+
+//                 '<td>'+element.nip+'</td>'+
+//                 '<td class="hidden-480">'+element.nama+'</td>'+
+//                 '<td>'+element.email+'</td>'+
+//                 '<td>'+
+//                     '<div class="hidden-sm hidden-xs action-buttons">'+
+//                         '<a class="blue" href="#">'+
+//                             '<i class="ace-icon fa fa-search-plus bigger-130"></i>'+
+//                         '</a>'+
+
+//                         '<a class="green" href="#">'+
+//                             '<i class="ace-icon fa fa-pencil bigger-130"></i>'+
+//                         '</a>'+
+
+//                         '<a class="red" href="#">'+
+//                             '<i class="ace-icon fa fa-trash-o bigger-130"></i>'+
+//                         '</a>'+
+//                     '</div>'+
+
+//                     '<div class="hidden-md hidden-lg">'+
+//                         '<div class="inline pos-rel">'+
+//                             '<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">'+
+//                                 '<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>'+
+//                             '</button>'+
+
+//                             '<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">'+
+//                                 '<li>'+
+//                                     '<a href="#" class="tooltip-info" data-rel="tooltip" title="View">'+
+//                                         '<span class="blue">'+
+//                                             '<i class="ace-icon fa fa-search-plus bigger-120"></i>'+
+//                                         '</span>'+
+//                                     '</a>'+
+//                                 '</li>'+
+
+//                                 '<li>'+
+//                                     '<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">'+
+//                                         '<span class="green">'+
+//                                             '<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>'+
+//                                         '</span>'+
+//                                     '</a>'+
+//                                 '</li>'+
+
+//                                 '<li>'+
+//                                     '<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">'+
+//                                         '<span class="red">'+
+//                                             '<i class="ace-icon fa fa-trash-o bigger-120"></i>'+
+//                                         '</span>'+
+//                                     '</a>'+
+//                                 '</li>'+
+//                             '</ul>'+
+//                         '</div>'+
+//                     '</div>'+
+//                 '</td>'+
+//             '</tr>');
+                
+//             });
+//             }
+//         });
+    
+// }
+
+function ambil_karyawan(){
+
+    $.ajax('http://' + host + path + '/action/ambil',{
+        dataType: 'JSON',
+        type :'POST',
+        success: function(data){
+            
+            
+        },
+        error : function(e){
+            console.log(e);
+        }
+    });
+}
 function getJSON(url,data){
     return JSON.parse($.ajax({
         type: 'POST',
@@ -97,8 +187,9 @@ function getUrlVars(){
     return vars;
 }
 
-function getDropify(){
-    $('.dropify').dropify({
+function getDropify(id){
+    var id = id
+    $(id).dropify({
         messages: {
             default: 'Drag atau Drop Untuk Foto Profil',
             replace: 'Ganti',
@@ -107,6 +198,9 @@ function getDropify(){
         }
     });
 }
-function stop(){
-    $('.dropify').dropify().stop();
+function clear(){
+    var drEvent = $('#image').dropify();
+    drEvent = drEvent.data('dropify');
+    drEvent.resetPreview();
+    drEvent.clearElement();
 }

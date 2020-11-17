@@ -3,9 +3,7 @@
 class User_model extends CI_Model
 {
     protected $_table_name = 'user';
-    protected $_primary_key = 'ID';
-    protected $_order_by = 'ID';
-    protected $_order_by_type = 'DESC';
+
     public $rules = array(
         'username' => array(
             'field' => 'username',

@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+define('EXT', '.php');
 
 spl_autoload_register(function ($class) {
     if (file_exists(APPPATH . "core/" . strtolower($class) . EXT)) {

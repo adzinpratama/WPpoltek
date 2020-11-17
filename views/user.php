@@ -86,16 +86,9 @@
                                             </button>
 
                                             <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                <li>
-                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                        <span class="blue">
-                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                        </span>
-                                                    </a>
-                                                </li>
 
                                                 <li>
-                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <a href="#edit?id=<?= $us['ID']; ?>" class="tooltip-success" data-rel="tooltip" title="Edit">
                                                         <span class="green">
                                                             <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                         </span>
@@ -103,7 +96,7 @@
                                                 </li>
 
                                                 <li>
-                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <a href="#hapus" class="tooltip-error" data-rel="tooltip" title="Delete">
                                                         <span class="red">
                                                             <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                         </span>
@@ -207,7 +200,6 @@
             </div><!-- /.span -->
         </div><!-- /.row -->
 
-        <!-- <?php if ($this->uri->segment(2)) ?> -->
         <div id="modal-form" class="modal fade" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -220,9 +212,11 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-5">
                                     <div class="space"></div>
+
                                     <div class="form-group">
-                                        <input type="file" name="image" id="image" class="dropify" data-default-file="./upload/avatars/">
+                                        <input type="file" name="image" id="image" class="dropify">
                                     </div>
+
                                 </div>
 
                                 <div class="col-xs-12 col-sm-7">
@@ -289,7 +283,7 @@
                                     Cancel
                                 </button>
 
-                                <button class="btn btn-sm btn-primary">
+                                <button class="btn btn-sm btn-primary submit-form">
                                     <i class="ace-icon fa fa-check"></i>
                                     Save
                                 </button>
