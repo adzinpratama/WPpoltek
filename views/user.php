@@ -215,6 +215,9 @@
 
                                     <div class="form-group">
                                         <input type="file" name="image" id="image" class="dropify">
+                                        <?php if ($this->session->flashdata('error')) : ?>
+                                            <div class="alert alert-danger"><?= $this->session->flashdata('error');; ?></div>
+                                        <?php endif; ?>
                                     </div>
 
                                 </div>
