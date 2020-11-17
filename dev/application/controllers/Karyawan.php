@@ -101,8 +101,8 @@ class Karyawan extends Backend_Controller
 
                 $output = array(
                     // "draw" => $_POST['draw'],
-                    // "recordsTotal" => $this->Karyawan_model->count_all(),
-                    // "recordsFiltered" => $this->Karyawan_model->count_filtered(),
+                    "recordsTotal" => $this->Karyawan_model->count_all(),
+                    "recordsFiltered" => $this->Karyawan_model->count_filtered(),
                     "data" => $data,
                 );
                 //output dalam format JSON
