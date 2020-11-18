@@ -111,7 +111,13 @@ class Karyawan extends Backend_Controller
             if ($param == 'tambah') {
                 $post = $this->input->post(null, true);
                 $upload_image = $_FILES['image']['name'];
-
+                $data = [
+                    'nip' => $post['nip'],
+                    'name' => $post['full_name'],
+                    'email' => $post['email'],
+                    'phone' => $post['phone'],
+                    'active' => 1,
+                ];
 
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = 500;
@@ -119,36 +125,17 @@ class Karyawan extends Backend_Controller
                 // $config['encrypt_name'] = TRUE;
 
                 $this->load->library('upload', $config);
-
-                if (!$this->upload->do_upload('image')) {
-                    // echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png dan max size 2mb";
-                    // die();
-                    $error = $this->upload->display_errors();
-                    echo json_encode(['response' => 'failed', 'error' => $error]);
-                } else {
-                    // $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
-                    // $image = $data['upload_data']['file_name'];
-                    $photo = $this->upload->data('file_name');
-
-                    $data = [
-                        'nip' => $post['nip'],
-                        'name' => $post['full_name'],
-                        'email' => $post['email'],
-                        'phone' => $post['phone'],
-                        'active' => 1,
-                        'photo' => $photo
-                    ];
-                    if (!isset($post['id'])) {
-                        $this->Karyawan_model->insert($data);
+                if ($upload_image) {
+                    if (!$this->upload->do_upload('image')) {
+                        $error = $this->upload->display_errors();
+                        echo json_encode(['response' => 'failed', 'error' => $error]);
                     } else {
-                        $user = $this->karyawan_model->get($post['id']);
-                        if ($user['photo'] && file_exists('./upload/avatars/' . $user['photo'])) {
-                            unlink('./upload/' . $user['photo']);
-                        }
-                        $this->Karyawan_model->update($post['id'], $data);
+                        $photo = $this->upload->data('file_name');
+                        $data['photo'] = $photo;
                     }
-                    echo json_encode(['response' => 'success', 'data' => $data]);
                 }
+                $this->Karyawan_model->insert($data);
+                echo json_encode(['response' => 'success', 'data' => $data]);
             }
         }
     }
@@ -171,33 +158,35 @@ class Karyawan extends Backend_Controller
     {
         $post = $this->input->post(null, true);
         $upload_image = $_FILES['image']['name'];
-
+        $data = [
+            'nip' => $post['nip'],
+            'name' => $post['full_name'],
+            'email' => $post['email'],
+            'phone' => $post['phone'],
+            'active' => 1
+        ];
 
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '2048';
+        $config['max_size'] = 500;
         $config['upload_path'] = './upload/avatars/';
         // $config['encrypt_name'] = TRUE;
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('image')) {
-            echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png dan max size 2mb";
-            die();
-        } else {
-            $photo = $this->upload->data('file_name');
-            $data = [
-                'nip' => $post['nip'],
-                'name' => $post['full_name'],
-                'email' => $post['email'],
-                'phone' => $post['phone'],
-                'photo' => $photo,
-                'active' => 1
-            ];
+        if ($upload_image) {
+            if (!$this->upload->do_upload('image')) {
+                $error = $this->upload->display_errors();
+                $this->session->set_flashdata('error', '<div class="alert alert-info">' . $error . '</div>');
+            } else {
+                $photo = $this->upload->data('file_name');
+                $data['photo'] = $photo;
+            }
         }
 
 
+
         $this->Karyawan_model->update($post['id'], $data);
-        $this->session->set_flashdata('notif', '<div class="alert alert-info">Data Berhasil Ditambahkan</div>');
+        $this->session->set_flashdata('notif', '<div class="alert alert-success">Data Berhasil DiUpdate !</div>');
         redirect('karyawan');
     }
     public function delete()

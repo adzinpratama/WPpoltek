@@ -18,6 +18,8 @@
                 <a href="#modal-form" role="button" data-toggle="modal" class="act-btn">
                     <span class="glayphicon glyphicon-plus"></span>
                 </a>
+                <?= $this->session->flashdata('notif'); ?>
+
                 <table id="simple-table" class="table  table-bordered table-hover">
                     <thead>
                         <tr>
@@ -70,7 +72,7 @@
 
                                 <td>
                                     <div class="hidden-sm hidden-xs btn-group">
-                                        <a href="#edit?id=<?= $us['ID']; ?>" class="btn btn-xs btn-info">
+                                        <a href="user/edit/<?= $us['ID']; ?>" class="btn btn-xs btn-info">
                                             <i class="ace-icon fa fa-pencil bigger-120"></i>
                                         </a>
 
@@ -88,7 +90,7 @@
                                             <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 
                                                 <li>
-                                                    <a href="#edit?id=<?= $us['ID']; ?>" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <a href="user/edit/<?= $us['ID']; ?>" id="hapus" data-id="<?= $us['ID']; ?>" class="tooltip-success" data-rel="tooltip" title="Edit">
                                                         <span class="green">
                                                             <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
                                                         </span>
@@ -208,7 +210,7 @@
                         <h4 class="blue bigger">Tambah Data</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post" id="form-karyawan" class="tambah" enctype="multipart/form-data">
+                        <form action="<?= base_url('user/do_update'); ?>" method="post" id="form-karyawan" class="tambah" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-5">
                                     <div class="space"></div>

@@ -80,7 +80,15 @@ class User extends Backend_Controller
             if ($param == 'tambah') {
                 $post = $this->input->post(null, true);
                 $upload_image = $_FILES['image']['name'];
-
+                $data = [
+                    'username' => $post['username'],
+                    'full_name' => $post['full_name'],
+                    'group' => $post['group'],
+                    'password' => bCrypt($post['password'], 12),
+                    'email' => $post['email'],
+                    'phone' => $post['phone'],
+                    'active' => 1,
+                ];
 
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = 500;
@@ -88,30 +96,17 @@ class User extends Backend_Controller
                 // $config['encrypt_name'] = TRUE;
 
                 $this->load->library('upload', $config);
-
-                if (!$this->upload->do_upload('image')) {
-                    // echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png dan max size 2mb";
-                    // die();
-                    $error = $this->upload->display_errors();
-                    echo json_encode(['response' => 'failed', 'error' => $error]);
-                } else {
-                    // $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
-                    // $image = $data['upload_data']['file_name'];
-                    $photo = $this->upload->data('file_name');
-
-                    $data = [
-                        'username' => $post['username'],
-                        'full_name' => $post['full_name'],
-                        'group' => $post['group'],
-                        'password' => bCrypt($post['password'], 12),
-                        'email' => $post['email'],
-                        'phone' => $post['phone'],
-                        'photo' => $photo,
-                        'active' => 1,
-                    ];
-                    $this->User_model->insert($data);
-                    echo json_encode(['response' => 'success', 'data' => $data]);
+                if ($upload_image) {
+                    if (!$this->upload->do_upload('image')) {
+                        $error = $this->upload->display_errors();
+                        $this->session->set_flashdata('error', '<div class="alert alert-info">' . $error . '</div>');
+                    } else {
+                        $photo = $this->upload->data('file_name');
+                        $data['photo'] = $photo;
+                    }
                 }
+                $this->User_model->insert($data);
+                echo json_encode(['response' => 'success', 'data' => $data]);
             }
         }
         if ($param == 'get') {
@@ -131,6 +126,12 @@ class User extends Backend_Controller
         $this->db->delete('user');
         echo json_encode(['status' => 'success']);
     }
+    public function edit($param)
+    {
+        $data['record'] = $this->User_model->get($param);
+        $data['page'] = "edit_user";
+        $this->site->view($data);
+    }
 
     public function newUser()
     {
@@ -146,5 +147,44 @@ class User extends Backend_Controller
         $this->db->set($data);
         $this->db->insert('user');
         echo "sukses";
+    }
+
+    public function do_update()
+    {
+        $post = $this->input->post(null, true);
+        $upload_image = $_FILES['image']['name'];
+
+        $data = [
+            'username' => $post['username'],
+            'full_name' => $post['full_name'],
+            'group' => $post['group'],
+            'password' => bCrypt($post['password'], 12),
+            'email' => $post['email'],
+            'phone' => $post['phone'],
+            'active' => 1,
+        ];
+
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2048';
+        $config['upload_path'] = './upload/avatars/';
+        // $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload', $config);
+        if ($upload_image) {
+            if (!$this->upload->do_upload('image')) {
+                $error = $this->upload->display_errors();
+                $this->session->set_flashdata('error', '<div class="alert alert-info">' . $error . '</div>');
+            } else {
+                $photo = $this->upload->data('file_name');
+                $data['photo'] = $photo;
+            }
+        }
+
+
+
+
+        $this->User_model->update($post['id'], $data);
+        $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert">Data Berhasil Di Update !</div>');
+        redirect('user');
     }
 }

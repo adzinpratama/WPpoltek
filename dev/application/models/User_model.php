@@ -48,4 +48,15 @@ class User_model extends CI_Model
         $id = $this->db->insert_id();
         return $id;
     }
+    public function delete($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete($this->_table_name);
+    }
+    function update($id, $data)
+    {
+        $this->db->where('ID', $id);
+        $this->db->set($data);
+        return $this->db->update($this->_table_name);
+    }
 }
