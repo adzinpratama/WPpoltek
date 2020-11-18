@@ -76,39 +76,45 @@ class User extends Backend_Controller
     }
     public function action($param)
     {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            if ($param == 'tambah') {
+                $post = $this->input->post(null, true);
+                $upload_image = $_FILES['image']['name'];
 
-        if ($param == 'add') {
-            $post = $this->input->post(null, true);
-            $upload_image = $_FILES['image']['name'];
 
-            if ($upload_image) {
                 $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size'] = '2048';
+                $config['max_size'] = 500;
                 $config['upload_path'] = './upload/avatars/';
-                $config['encrypt_name'] = TRUE;
+                // $config['encrypt_name'] = TRUE;
 
                 $this->load->library('upload', $config);
 
                 if (!$this->upload->do_upload('image')) {
-                    echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png dan max size 2mb";
-                    die();
+                    // echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png dan max size 2mb";
+                    // die();
+                    $error = $this->upload->display_errors();
+                    echo json_encode(['response' => 'failed', 'error' => $error]);
                 } else {
-                    $data['photo'] = $this->upload->data('file_name');
+                    // $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+                    // $image = $data['upload_data']['file_name'];
+                    $photo = $this->upload->data('file_name');
+
+                    $data = [
+                        'username' => $post['username'],
+                        'full_name' => $post['full_name'],
+                        'group' => $post['group'],
+                        'password' => bCrypt($post['password'], 12),
+                        'email' => $post['email'],
+                        'phone' => $post['phone'],
+                        'photo' => $photo,
+                        'active' => 1,
+                    ];
+                    $this->User_model->insert($data);
+                    echo json_encode(['response' => 'success', 'data' => $data]);
                 }
             }
-            $data = [
-                'username' => $post['username'],
-                'full_name' => $post['full_name'],
-                'group' => $post['group'],
-                'password' => bCrypt($post['password'], 12),
-                'email' => $post['email'],
-                'phone' => $post['phone'],
-                'active' => 1,
-            ];
-            $this->User_model->insert($data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Ditambahkan!</div>');
-            redirect('user');
-        } else if ($param == 'get') {
+        }
+        if ($param == 'get') {
             $post = $this->input->post(NULL, TRUE);
             if (!empty($post['id'])) {
                 echo json_encode(array(

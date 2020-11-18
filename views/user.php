@@ -208,7 +208,7 @@
                         <h4 class="blue bigger">Tambah Data</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= site_url('user/action/add'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="" method="post" id="form-karyawan" class="tambah" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-5">
                                     <div class="space"></div>
@@ -283,7 +283,7 @@
                                     Cancel
                                 </button>
 
-                                <button class="btn btn-sm btn-primary submit-form">
+                                <button id="submit-karyawan" class="btn btn-sm btn-primary">
                                     <i class="ace-icon fa fa-check"></i>
                                     Save
                                 </button>

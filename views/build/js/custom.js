@@ -77,7 +77,7 @@ $(document).on('click','#submit-karyawan',function(eve){
     eve.preventDefault();
     var action = $('#form-karyawan').attr('class');
 
-    // return console.log(action);
+    //return console.log(action);
     // datatosend = $('#form-karyawan').serialize();
     // return console.log(datatosend);
     // var data = new FormData(form);
