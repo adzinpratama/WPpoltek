@@ -30,7 +30,7 @@ class User extends Backend_Controller
         $rules = $this->User_model->rules;
         $this->form_validation->set_rules($rules);
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('login');
+            $this->load->view('backend/login');
         } else {
             $login_data = array(
                 'ID' => $this->user_detail->ID,
@@ -53,7 +53,7 @@ class User extends Backend_Controller
             $this->db->where('ID', $this->user_detail->ID);
             $this->db->update('user', ['last_login' => date('Y-m-d H:i:s')]);
 
-            redirect('dashboard');
+            redirect('admin');
         }
     }
     public function password_check($str)
@@ -72,7 +72,7 @@ class User extends Backend_Controller
     public function logout()
     {
         $this->session->sess_destroy();
-        redirect('user/login');
+        redirect('admin/login');
     }
     public function action($param)
     {
@@ -136,7 +136,7 @@ class User extends Backend_Controller
     public function newUser()
     {
         $data = array(
-            'username' => 'admin',
+            'username' => 'masuk',
             'full_name' => 'Admin',
             'group' => 'admin',
             'password' => bCrypt('admin', 12),
@@ -185,6 +185,6 @@ class User extends Backend_Controller
 
         $this->User_model->update($post['id'], $data);
         $this->session->set_flashdata('notif', '<div class="alert alert-success" role="alert">Data Berhasil Di Update !</div>');
-        redirect('user');
+        redirect('admin/user');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Absen extends MY_Controller
+class Absen extends Backend_Controller
 {
 
     public function __construct()
@@ -11,7 +11,7 @@ class Absen extends MY_Controller
     public function index()
     {
 
-        $data['page'] = "absen ";
-        $this->load->view('index', $data);
+        $data['page'] = "absensi";
+        $this->site->view($data);
     }
 }

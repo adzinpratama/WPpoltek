@@ -187,7 +187,7 @@ class Karyawan extends Backend_Controller
 
         $this->Karyawan_model->update($post['id'], $data);
         $this->session->set_flashdata('notif', '<div class="alert alert-success">Data Berhasil DiUpdate !</div>');
-        redirect('karyawan');
+        redirect('admin/karyawan');
     }
     public function delete()
     {

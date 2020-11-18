@@ -101,7 +101,7 @@ $(document).on('click','#submit-karyawan',function(eve){
         async:false,
         data: data,
         success:function(data){
-            alert('sukses');
+            // alert('sukses');
             // return console.log(data.post);
             if(data.response == 'success'){
                 $('#modal-form').modal('hide');

@@ -357,7 +357,7 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="<?= site_url('user/logout'); ?>">
+                                <a href="<?= site_url('admin/logout'); ?>">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     Logout
                                 </a>
@@ -416,7 +416,7 @@
             <ul id="nav" class="nav nav-list">
                 <?php foreach ($menu as $mn) : ?>
                     <li class="">
-                        <a href="<?= site_url($mn['location']); ?>">
+                        <a href="<?= site_url('admin/') . $mn['location']; ?>">
                             <i class="menu-icon fa fa-<?= $mn['icon']; ?>"></i>
                             <span class="menu-text"> <?= $mn['menu_title'] ?> </span>
                         </a>
@@ -532,7 +532,7 @@
                         </div>
                     </div>
 
-                    <?php $this->load->view($page); ?>
+                    <?php $this->site->view(NULL, $page); ?>
                 </div><!-- /.page-content -->
             </div>
         </div><!-- /.main-content -->

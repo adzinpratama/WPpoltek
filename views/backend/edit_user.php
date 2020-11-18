@@ -8,7 +8,7 @@
     </h1>
 </div><!-- /.page-header -->
 <div class="pull-right">
-    <a href="<?= base_url('karyawan'); ?>" class="btn btn-danger btn-sm">
+    <a href="<?= base_url('admin/user'); ?>" class="btn btn-danger btn-sm">
         <i class="ace-icon fa fa-reply icon-only"></i> Back
     </a>
 </div>
@@ -18,7 +18,7 @@
             <div class="pull-right tableTools-container"></div>
         </div>
         <div id="user-profile-1" class="user-profile row">
-            <form action="<?= base_url('user/do_update'); ?>" id="form-karyawan" class="edit" method="POST" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/user/do_update'); ?>" id="form-karyawan" class="edit" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $record['ID']; ?>">
                 <div class="col-xs-12 col-sm-3 center">
                     <div>

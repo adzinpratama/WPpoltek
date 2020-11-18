@@ -22,6 +22,7 @@ class Dashboard extends Backend_Controller
     public function index()
     {
         $data['page'] = "dashboard";
+        // print_r($data);
         $this->site->view($data);
     }
 }

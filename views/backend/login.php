@@ -20,7 +20,7 @@
                 <div class="avatar">
                     <img src="../assets/images/avatars/user.svg">
                 </div>
-                <form method="POST" action="<?= site_url("user/login"); ?>">
+                <form method="POST" action="<?= site_url("admin/login"); ?>">
                     <!-- <h2 class="title">Login</h2> -->
                     <div class="input-div one">
                         <div class="i">

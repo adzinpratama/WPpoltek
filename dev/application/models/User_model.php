@@ -1,8 +1,9 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class User_model extends CI_Model
+class User_model extends MY_Model
 {
     protected $_table_name = 'user';
+    protected $_primary = 'ID';
 
     public $rules = array(
         'username' => array(
@@ -21,42 +22,5 @@ class User_model extends CI_Model
     function __construct()
     {
         parent::__construct();
-    }
-    function get($id)
-    {
-
-        $this->db->where('ID', $id);
-        return $this->db->get($this->_table_name)->row_array();
-    }
-
-    function getAll()
-    {
-        return $this->db->get($this->_table_name)->result_array();
-    }
-
-    function getLogin($where, $orwhere)
-    {
-        $this->db->where($where)->or_where($orwhere);
-        $this->db->limit(1);
-        return $this->db->get($this->_table_name)->row();
-    }
-    function insert($data)
-    {
-
-        $this->db->set($data);
-        $this->db->insert($this->_table_name);
-        $id = $this->db->insert_id();
-        return $id;
-    }
-    public function delete($id)
-    {
-        $this->db->where('id', $id);
-        return $this->db->delete($this->_table_name);
-    }
-    function update($id, $data)
-    {
-        $this->db->where('ID', $id);
-        $this->db->set($data);
-        return $this->db->update($this->_table_name);
     }
 }

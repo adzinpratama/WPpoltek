@@ -8,7 +8,7 @@
     </h1>
 </div><!-- /.page-header -->
 <div class="pull-right">
-    <a href="<?= base_url('karyawan'); ?>" class="btn btn-danger btn-sm">
+    <a href="<?= base_url('admin/karyawan'); ?>" class="btn btn-danger btn-sm">
         <i class="ace-icon fa fa-reply icon-only"></i> Back
     </a>
 </div>
@@ -18,7 +18,7 @@
         <div class="clearfix">
             <div class="pull-right tableTools-container"></div>
         </div>
-        <?php if ($this->uri->segment(2) == 'view') : ?>
+        <?php if ($this->uri->segment(3) == 'view') : ?>
             <div id="user-profile-1" class="user-profile row">
                 <div class="col-xs-12 col-sm-3 center">
                     <div>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="space-8"></div>
                     <div class="col-xs-12 col-md-9">
-                        <a href="<?= base_url(); ?>karyawan/edit/<?= $record['ID']; ?>" id="submit-edit" class="btn btn-primary">
+                        <a href="<?= base_url(); ?>admin/karyawan/edit/<?= $record['ID']; ?>" id="submit-edit" class="btn btn-primary">
                             <i class="ace-icon fa fa-pencil bigger-110"></i>Edit</a>
                     </div>
 

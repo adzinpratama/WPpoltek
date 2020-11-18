@@ -8,12 +8,12 @@
     </h1>
 </div><!-- /.page-header -->
 <div class="pull-right">
-    <a href="<?= base_url('karyawan'); ?>" class="btn btn-danger btn-sm">
+    <a href="<?= base_url('admin/karyawan'); ?>" class="btn btn-danger btn-sm">
         <i class="ace-icon fa fa-reply icon-only"></i> Back
     </a>
 </div>
 
-<form action="<?= base_url('karyawan/do_update'); ?>" id="form-karyawan" class="edit" method="post" enctype="multipart/form-data">
+<form action="<?= base_url('admin/karyawan/do_update'); ?>" id="form-karyawan" class="edit" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= $record['ID']; ?>">
     <div class="row">
         <div class="col-xs-12 col-sm-5">
