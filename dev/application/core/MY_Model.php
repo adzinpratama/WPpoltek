@@ -44,4 +44,12 @@ class MY_Model extends CI_Model
         $this->db->set($data);
         return $this->db->update($this->_table_name);
     }
+    function join($select, $from, $table, $query)
+    {
+        $this->db->select($select);
+        $this->db->from($from);
+        $this->db->join($table, $query);
+        $query = $this->db->get($this->_table_name);
+        return $query->result_array();
+    }
 }

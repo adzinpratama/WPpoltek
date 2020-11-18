@@ -13,7 +13,7 @@ class User extends Backend_Controller
     {
         $data['user'] = $this->User_model->getAll();
         $data['page'] = "user";
-        $data['script'] = "user";
+        $data['script'] = ['user', 'custom'];
         $this->site->view($data);
     }
 
@@ -130,6 +130,7 @@ class User extends Backend_Controller
     {
         $data['record'] = $this->User_model->get($param);
         $data['page'] = "edit_user";
+        $data['script'] = ['custom'];
         $this->site->view($data);
     }
 

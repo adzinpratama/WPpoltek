@@ -7,7 +7,7 @@ class Backend_Controller extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('User_model');
+        $this->load->model(['User_model', 'Karyawan_model', 'Absen_model']);
         $user_session = $this->session->userdata;
         if ($this->uri->segment(2) == 'login') {
             if (isset($user_session['logged_in']) && $user_session['logged_in'] == TRUE && $user_session['group'] == 'admin') {

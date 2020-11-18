@@ -592,9 +592,10 @@
     <script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <?php if (isset($script)) : ?>
-        <script src="<?= get_template_directory(dirname(__FILE__), 'build/'); ?>js/<?= $script; ?>.js"></script>
+        <?php foreach ($script as $scr) : ?>
+            <script src="<?= get_template_directory(dirname(__FILE__), 'build/'); ?>js/<?= $scr; ?>.js"></script>
+        <?php endforeach; ?>
     <?php endif; ?>
-    <script src="<?= get_template_directory(dirname(__FILE__), 'build/'); ?>js/custom.js"></script>
 
     <!-- inline scripts related to this page -->
     <script>

@@ -29,7 +29,7 @@ class Karyawan extends Backend_Controller
     public function index()
     {
         $data['page'] = "karyawan";
-        $data['script'] = "tables";
+        $data['script'] = ['tables', 'custom'];
         // $data['record'] = $this->db->Karyawan_model->getAll();
         $this->site->view($data);
     }
@@ -143,6 +143,7 @@ class Karyawan extends Backend_Controller
     {
         $data['record'] = $this->Karyawan_model->get($param);
         $data['page'] = "form_edit";
+        $data['script'] = ['custom'];
         $this->site->view($data);
     }
     public function view($param)
