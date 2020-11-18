@@ -19,6 +19,7 @@
         <!-- <a href="#" class="act-btn delete">
             <span class="fa fa-trash"></span>
         </a> -->
+        <?php echo $this->session->flashdata('notif'); ?>
         <table id="dynamic-table" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
@@ -108,7 +109,7 @@
                         <h4 class="blue bigger">Tambah Data</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="" id="form-karyawan" method="post" enctype="multipart/form-data">
+                        <form action="" id="form-karyawan" class="tambah" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-5">
                                     <div class="space"></div>

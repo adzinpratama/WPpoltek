@@ -74,20 +74,24 @@ $(document).on('click','#hapus',function(eve){
 });
 
 $(document).on('click','#submit-karyawan',function(eve){
-    
     eve.preventDefault();
-    var action = $('#form-karyawan').attr('action');
-    // var datatosend = $('#form-karyawan').serialize();
+    var action = $('#form-karyawan').attr('class');
+
+    // return console.log(action);
+    // datatosend = $('#form-karyawan').serialize();
+    // return console.log(datatosend);
+    // var data = new FormData(form);
+    // return console.log(data);
     // const fileupload = $('#image').prop('files')[0];
-    // let formData = new FormData();
+    // let formData = new FormData(); 
     // formData.append('fileupload', fileupload);
     // formData.append('form', datatosend);
     var form = $('#form-karyawan')[0];
 
     var data = new FormData(form);
-    // console.log(data);
+    // return console.log(data);
         
-    $.ajax('http://' + host + path + '/action/tambah',{
+    $.ajax('http://' + host + path + '/action/'+action,{
         dataType:'json',
         type:'POST',
         enctype: 'multipart/form-data',
@@ -95,17 +99,91 @@ $(document).on('click','#submit-karyawan',function(eve){
         contentType: false,
         cache: false,
         async:false,
-        data:data,
+        data: data,
         success:function(data){
+            alert('sukses');
+            // return console.log(data.post);
+            if(data.response == 'success'){
+                $('#modal-form').modal('hide');
+                Swal.fire(
+                    'Sukses!',
+                    'File Kamu Sudah Tersimpan',
+                    'success'
+                    ).then((result)=>{location.reload()})
+            }
+            else if(data.response == 'failed'){
+                if(data.error){
+                    toastr["error"](data.error);
+                }
+            }
             console.log(data);
-            alert('ok');
         },
         error:function(e){
-            console.log(e);
+            alert('error');
+            console.log(e.responseText);
         }
     });
 });
 
+// $(document).on('click','#submit-edit',function(eve){
+//     eve.preventDefault();
+//     var action = $('#form-karyawan').attr('class');
+//     // return console.log(action);
+//     // datatosend = $('#form-karyawan').serialize();
+//     // return console.log(datatosend);
+//     // var data = new FormData(form);
+//     // return console.log(data);
+//     // const fileupload = $('#image').prop('files')[0];
+//     // let formData = new FormData(); 
+//     // formData.append('fileupload', fileupload);
+//     // formData.append('form', datatosend);
+//     $nip = $('#nip').val();
+//     $name = $('#full_name').val();
+//     $email = $('#email').val();
+//     $phone = $('#phone').val();
+//     var image = $("#image")[0].files[0];
+//     var fd = new FormData();
+
+//     fd.append("nip", nip);
+//     fd.append("name", name);
+//     fd.append("email", email);
+//     fd.append("phone", phone);
+//     if ($("#image")[0].files.length > 0) {
+//         fd.append("image", image);
+//     }
+
+//     // return console.log(data);
+        
+//     $.ajax('http://' + host + path + '/action/'+action,{
+//         dataType:'html',
+//         type:'POST',
+//         processData: false,  // Important!
+//         contentType: false,
+//         data: fd,
+//         success:function(data){
+//             alert('sukses');
+//             // return console.log(data.post);
+//             if(data.response == 'success'){
+//                 $('#modal-form').modal('hide');
+//                 Swal.fire(
+//                     'Sukses!',
+//                     'File Kamu Sudah Tersimpan',
+//                     'success'
+//                     ).then((result)=>{location.reload()})
+//             }
+//             else if(data.response == 'failed'){
+//                 if(data.error){
+//                     toastr["error"](data.error);
+//                 }
+//             }
+//             console.log(data);
+//         },
+//         error:function(e){
+//             alert('error');
+//             console.log(e.responseText);
+//         }
+//     });
+// });
 
 
 // function asd() {
@@ -223,4 +301,22 @@ function clear(){
     drEvent = drEvent.data('dropify');
     drEvent.resetPreview();
     drEvent.clearElement();
+}
+
+toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
 }

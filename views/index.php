@@ -10,45 +10,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/font-awesome/4.5.0/css/font-awesome.min.css" />
     <!-- dropify -->
 
-    <link rel="stylesheet" href="assets/plugin/dropify/css/dropify.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugin/dropify/css/dropify.css">
 
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
-    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/fonts.googleapis.com.css" />
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
-			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+			<link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
 		<![endif]-->
-    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-rtl.min.css" />
     <link rel="stylesheet" href="<?= get_template_directory(dirname(__FILE__), 'build/'); ?>css/style.css" />
 
     <!--[if lte IE 9]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-ie.min.css" />
 		<![endif]-->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
-    <script src="assets/js/ace-extra.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
     <!--[if lte IE 8]>
-		<script src="assets/js/html5shiv.min.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="<?= base_url(); ?>assets/js/html5shiv.min.js"></script>
+		<script src="<?= base_url(); ?>assets/js/respond.min.js"></script>
         <![endif]-->
     <!-- sweetalert -->
     <script src="<?= base_url('node_modules/sweetalert2/dist/'); ?>sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<?= base_url('node_modules/sweetalert2/dist/'); ?>sweetalert2.min.css">
+    <!-- toastr -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
 </head>
 
@@ -237,7 +239,7 @@
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                            <img src="<?= base_url(); ?>assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Alex:</span>
@@ -254,7 +256,7 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                            <img src="<?= base_url(); ?>assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Susan:</span>
@@ -271,7 +273,7 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                            <img src="<?= base_url(); ?>assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Bob:</span>
@@ -288,7 +290,7 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+                                            <img src="<?= base_url(); ?>assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Kate:</span>
@@ -305,7 +307,7 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+                                            <img src="<?= base_url(); ?>assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Fred:</span>
@@ -333,7 +335,7 @@
 
                     <li class="light-blue dropdown-modal">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <img class="nav-user-photo" src="upload/avatars/<?= $this->session->userdata['image']; ?>" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="<?= base_url(); ?>upload/avatars/<?= $this->session->userdata['image']; ?>" alt="Jason's Photo" />
                             <span class="user-info">
                                 <small>Welcome,</small>
                                 <?= $this->session->userdata['full_name']; ?>
@@ -554,40 +556,41 @@
     <!-- basic scripts -->
 
     <!--[if !IE]> -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/jquery-2.1.4.min.js"></script>
 
     <!-- <![endif]-->
 
     <!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
     <script type="text/javascript">
         if ('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
 
 
     <!-- page specific plugin scripts -->
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/jquery.dataTables.bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/buttons.flash.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/buttons.html5.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/buttons.print.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/buttons.colVis.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/dataTables.select.min.js"></script>
 
     <!-- dropfy -->
 
-    <script src="assets/js/popper.js"></script>
-    <script src="assets/plugin/dropify/js/dropify.js"></script>
+    <script src="<?= base_url(); ?>assets/js/popper.js"></script>
+    <script src="<?= base_url(); ?>assets/plugin/dropify/js/dropify.js"></script>
 
     <!-- hashchange -->
-    <script src="assets/plugin/hashchange/jquery.ba-bbq.min.js"></script>
+    <script src="<?= base_url(); ?>assets/plugin/hashchange/jquery.ba-bbq.min.js"></script>
 
     <!-- ace scripts -->
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/ace-elements.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/ace.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <?php if (isset($script)) : ?>
         <script src="<?= get_template_directory(dirname(__FILE__), 'build/'); ?>js/<?= $script; ?>.js"></script>
     <?php endif; ?>

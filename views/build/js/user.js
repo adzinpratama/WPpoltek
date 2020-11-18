@@ -1,6 +1,7 @@
 
 //And for the first simple table, which doesn't have TableTools or dataTables
 //select/deselect all rows according to table header checkbox
+
 var active_class = 'active';
 $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function() {
   var th_checked = this.checked; //checkbox inside "TH" table header
