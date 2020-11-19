@@ -249,17 +249,20 @@
                                     </div>
 
                                 </div>
-                                <div class="col-xs-8">
+                                <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="group">Group</label>
 
                                         <div>
-                                            <input class="form-control" type="text" id="group" name="group" placeholder="Group" />
+                                            <!-- <input class="form-control" type="text" id="group" name="group" placeholder="Group" /> -->
+                                            <select class="form-control" id="group" name="group">
+                                                <option value="admin">Admin</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-xs-6">
+                                <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="phone">Phone</label>
                                         <div>

@@ -77,7 +77,10 @@
                             <div class="profile-info-name"> Group </div>
 
                             <div class="profile-info-value">
-                                <input type="text" class="col-xs-10 col-sm-5" name="group" value="<?= $record['group']; ?>">
+                                <!-- <input type="text" class="col-xs-10 col-sm-5" name="group" value="<?= $record['group']; ?>"> -->
+                                <select class="col-xs-10 col-sm-5" id="group" name="group" value="<?= $record['group']; ?>">
+                                    <option value="admin">Admin</option>
+                                </select>
                             </div>
                         </div>
 

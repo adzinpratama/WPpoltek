@@ -46,4 +46,10 @@ class Absen extends Backend_Controller
             }
         }
     }
+    public function delete()
+    {
+        $this->db->where('ID', $this->input->post('id'));
+        $this->db->delete('absen');
+        echo json_encode(['status' => 'success']);
+    }
 }

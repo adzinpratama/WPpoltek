@@ -12,8 +12,12 @@
 <div class="row">
 	<div class="col-xs-12">
 		<!-- PAGE CONTENT BEGINS -->
+
 		<div class="row">
 			<div class="col-xs-12">
+				<a href="<?= base_url('admin/absen'); ?>" role="button" data-toggle="modal" class="act-btn">
+					<span class="ace-icon fa fa-refresh"></span>
+				</a>
 				<table id="simple-table" class="table  table-bordered table-hover">
 					<thead>
 						<tr>

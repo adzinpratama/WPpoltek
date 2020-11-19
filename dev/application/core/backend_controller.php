@@ -16,7 +16,7 @@ class Backend_Controller extends MY_Controller
         } else {
             if (!isset($user_session['logged_in']) || $user_session['group'] != 'admin') {
                 $this->session->sess_destroy();
-                redirect(base_url('user/login'));
+                redirect(base_url('admin/login'));
             }
         }
 

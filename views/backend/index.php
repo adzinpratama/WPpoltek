@@ -29,6 +29,7 @@
 		<![endif]-->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-skins.min.css" />
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/ace-rtl.min.css" />
+
     <link rel="stylesheet" href="<?= get_template_directory(dirname(__FILE__), 'build/'); ?>css/style.css" />
 
     <!--[if lte IE 9]>
